@@ -15,9 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}      
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
@@ -56,6 +53,10 @@ jobs:
         with:
           name: .net-app
 
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -63,3 +64,7 @@ jobs:
           app-name: 'f4t-sqlmi'
           slot-name: 'Production'
           package: .
+
+      - name: logout
+        run: |
+          az logout
