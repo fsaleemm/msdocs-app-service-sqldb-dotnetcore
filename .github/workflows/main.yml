@@ -61,7 +61,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'f4t-sqlmi'
+          app-name: 'app-f4t-sqlmi-test'
           slot-name: 'Production'
           package: .
 
